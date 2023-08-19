@@ -5,8 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="rps.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
+    <!-- Paper icon https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand-512.png -->
+    <!-- Rock icon https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand_punch_fist_-512.png -->
+    <!-- Scissors icon https://static.thenounproject.com/png/477919-200.png -->
+    <div>
+        <div>
+            <h1>Player Choice</h1>
+            <img src id="player-choice">
+        </div>
+        <div>
+            <h1>Computer Choice</h1>
+            <img src id="computer-choice">
+        </div>
+    </div>
+    <button id="rock">
+
+    </button>
+    <button id="paper">
+        
+    </button>
+    <button id="scissors">
+        
+    </button>
+    <div>
+        <p id="winner"></p>
+        <h1 id="player-score" class="score">The player score is: 0</h1>
+        <h1 id="computer-score" class="score">The computer score is: 0</h1>
+    </div>
+    <script>
+        let imgLinks = new Map();
+        imgLinks.set(1, "https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand-512.png");
+        imgLinks.set(0, "https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand_punch_fist_-512.png");
+        imgLinks.set(2, "https://static.thenounproject.com/png/477919-200.png");
+        imgLinks.set("paper", "https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand-512.png");
+        imgLinks.set("rock", "https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand_punch_fist_-512.png");
+        imgLinks.set("scissors", "https://static.thenounproject.com/png/477919-200.png");
+        const buttons = document.querySelectorAll("button");
+        let result = 0;
+        let cChoice = 0;
+        let pChoice = 0;
+        let pScore = 0;
+        let cScore = 0;
+        buttons.forEach((button) => {
+            button.addEventListener(("click"), (e)=> {
+                pChoice = e.target.id;
+                let pImg = document.querySelector("#player-choice");
+                pImg.src = imgLinks.get(pChoice);
+                cChoice = getComputerChoice();
+                let cImg = document.querySelector("#computer-choice");
+                cImg.src = imgLinks.get(cChoice);
+                result = playRound(pChoice, cChoice);
+                if (result == -1) {
+                    let winner = document.querySelector("#winner");
+                    winner.textContent = "The winner is: computer";
+                    cScore++;
+                    let score = document.querySelector("#computer-score"); 
+                    score.textContent = `The computer score is: ${cScore}`;
+                } else if (result == 1) {
+                    let winner = document.querySelector("#winner");
+                    winner.textContent = "The winner is: player";
+                    pScore++;
+                    let score = document.querySelector("#player-score"); 
+                    score.textContent = `The player score is: ${pScore}`;
+                } else {
+                    let winner = document.querySelector("#winner");
+                    winner.textContent = "Tie round";
+                }
+                if (pScore == 5)
+            });
+            
+        });
+    </script>
 </body>
 </html>

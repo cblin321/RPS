@@ -37,12 +37,12 @@ function playRound(playerSelection, computerSelection) {
 function game() {
     let pScore = 0;
     let cScore = 0;
-    for (i = 0; i < 5; i++) {
+    // for (i = 0; i < 5; i++) {
         let id = playRound(prompt("Select rock, paper, or scissors"), getComputerChoice());
         if (id == 1) 
             pScore++;
         else if (id == -1)
             cScore++;
-    }
+    // }
     console.log("Player: " + pScore + " cScore: " + cScore);
 }
