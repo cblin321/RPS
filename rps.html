@@ -8,27 +8,31 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="popup">
+        <h2 id="win-lose"></h2>
+        <button type="button">Ok</button>
+    </div>
     <!-- Paper icon https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand-512.png -->
     <!-- Rock icon https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand_punch_fist_-512.png -->
     <!-- Scissors icon https://static.thenounproject.com/png/477919-200.png -->
-    <div>
+    <div class="choice-wrapper">
         <div>
-            <h1>Player Choice</h1>
+            <h1 id="p-choice">Player Choice</h1>
             <img src id="player-choice">
         </div>
         <div>
-            <h1>Computer Choice</h1>
+            <h1 id="c-choice">Computer Choice</h1>
             <img src id="computer-choice">
         </div>
     </div>
-    <button id="rock">
-
+    <button class="choice-button">
+        <img src="https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand_punch_fist_-512.png" id="rock">
     </button>
-    <button id="paper">
-        
+    <button class="choice-button">
+        <img src="https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand-512.png" id="paper">
     </button>
     <button id="scissors">
-        
+        <img src="https://static.thenounproject.com/png/477919-200.png" id="scissors">
     </button>
     <div>
         <p id="winner"></p>
@@ -52,6 +56,13 @@
         buttons.forEach((button) => {
             button.addEventListener(("click"), (e)=> {
                 pChoice = e.target.id;
+                if (!pChoice) {
+                    pChoice = e.originalTarget.children[0].id;
+                }
+                document.querySelectorAll("h1").forEach((head) => {
+                    head.classList.add("nopad");
+                });
+                console.log(pChoice);
                 let pImg = document.querySelector("#player-choice");
                 pImg.src = imgLinks.get(pChoice);
                 cChoice = getComputerChoice();
@@ -74,7 +85,17 @@
                     let winner = document.querySelector("#winner");
                     winner.textContent = "Tie round";
                 }
-                if (pScore == 5)
+                if (pScore == 5) {
+                    popup = document.querySelector(".popup");
+                    popup.classList.add("open-popup");
+                    announce = document.querySelector("#win-lose");
+                    announce.textContent = "YOU WIN!"
+                } else if (cScore == 5) {
+                    popup = document.querySelector(".popup");
+                    popup.classList.add("open-popup");
+                    announce = document.querySelector("#win-lose");
+                    announce.textContent = "YOU LOSE!"
+                }
             });
             
         });

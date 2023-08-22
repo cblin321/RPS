@@ -1,4 +1,55 @@
 img {
-    max-width: 30%;
-    max-height: 30%;
+    width: 100px;
+    height: 100px;
+    object-fit: fill;
 }
+
+button[type="button"] {
+    width: 85px;
+    height: 35px;
+}
+
+.popup {
+    width: 400px;
+    position: absolute;
+    background: aquamarine;
+    /* display: flex; */
+    /* justify-content: center;
+    align-items: center; */
+    margin: auto;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    visibility: hidden;
+    border-radius: 10px;
+    transition: all 0.4s ease-in-out;
+    text-align: center;
+}
+
+.open-popup {
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+    top: 50%;
+    margin: auto;
+    position: fixed;
+}
+
+.choice-wrapper {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+#p-choice {
+    padding-right: 15%;
+}
+
+#c-choice {
+    padding-left: 15%;
+}
+
+.nopad {
+    padding: 0 !important;
+}
+
