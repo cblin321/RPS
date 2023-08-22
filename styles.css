@@ -37,16 +37,19 @@ button[type="button"] {
 .choice-wrapper {
     display: flex;
     text-align: center;
-    align-items: center;
-    justify-content: center;
+    align-items: space-evenly;
+    justify-content: space-evenly;
+    margin: 0 !important;
+    padding: 0 !important;
+    /* flex: 1; */
 }
 
-#p-choice {
-    padding-right: 15%;
+#p-wrapper, #c-wrapper {
+    width: 50%; /*Set both wrappers to the same width */
 }
 
-#c-choice {
-    padding-left: 15%;
+.choice-button {
+    width: 33%;
 }
 
 .nopad {

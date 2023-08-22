@@ -16,26 +16,27 @@
     <!-- Rock icon https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand_punch_fist_-512.png -->
     <!-- Scissors icon https://static.thenounproject.com/png/477919-200.png -->
     <div class="choice-wrapper">
-        <div>
+        <div id="p-wrapper">
             <h1 id="p-choice">Player Choice</h1>
             <img src id="player-choice">
         </div>
-        <div>
+        <div id="c-wrapper">
             <h1 id="c-choice">Computer Choice</h1>
             <img src id="computer-choice">
         </div>
     </div>
-    <button class="choice-button">
-        <img src="https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand_punch_fist_-512.png" id="rock">
-    </button>
-    <button class="choice-button">
-        <img src="https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand-512.png" id="paper">
-    </button>
-    <button id="scissors">
-        <img src="https://static.thenounproject.com/png/477919-200.png" id="scissors">
-    </button>
-    <div>
-        <p id="winner"></p>
+    <div class="choice-wrapper">
+        <button class="choice-button">
+            <img src="https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand_punch_fist_-512.png" id="rock">
+        </button>
+        <button class="choice-button">
+            <img src="https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand-512.png" id="paper">
+        </button>
+        <button id="scissors" class="choice-button">
+            <img src="https://static.thenounproject.com/png/477919-200.png" id="scissors">
+        </button>
+    </div>
+    <div class="score-wrapper">
         <h1 id="player-score" class="score">The player score is: 0</h1>
         <h1 id="computer-score" class="score">The computer score is: 0</h1>
     </div>
@@ -47,7 +48,7 @@
         imgLinks.set("paper", "https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand-512.png");
         imgLinks.set("rock", "https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand_punch_fist_-512.png");
         imgLinks.set("scissors", "https://static.thenounproject.com/png/477919-200.png");
-        const buttons = document.querySelectorAll("button");
+        const buttons = document.querySelectorAll(".choice-button");
         let result = 0;
         let cChoice = 0;
         let pChoice = 0;
@@ -70,20 +71,20 @@
                 cImg.src = imgLinks.get(cChoice);
                 result = playRound(pChoice, cChoice);
                 if (result == -1) {
-                    let winner = document.querySelector("#winner");
-                    winner.textContent = "The winner is: computer";
+                    //let winner = document.querySelector("#winner");
+                    //winner.textContent = "The winner is: computer";
                     cScore++;
                     let score = document.querySelector("#computer-score"); 
                     score.textContent = `The computer score is: ${cScore}`;
                 } else if (result == 1) {
-                    let winner = document.querySelector("#winner");
-                    winner.textContent = "The winner is: player";
+                    //let winner = document.querySelector("#winner");
+                    //winner.textContent = "The winner is: player";
                     pScore++;
                     let score = document.querySelector("#player-score"); 
                     score.textContent = `The player score is: ${pScore}`;
                 } else {
-                    let winner = document.querySelector("#winner");
-                    winner.textContent = "Tie round";
+                    //let winner = document.querySelector("#winner");
+                    //winner.textContent = "Tie round";
                 }
                 if (pScore == 5) {
                     popup = document.querySelector(".popup");
@@ -94,10 +95,17 @@
                     popup = document.querySelector(".popup");
                     popup.classList.add("open-popup");
                     announce = document.querySelector("#win-lose");
-                    announce.textContent = "YOU LOSE!"
+                    announce.textContent = "YOU LOSE!";
                 }
             });
             
+        });
+        const close = document.querySelector(".popup button");
+        console.log(close);
+        close.addEventListener(("click"), (e) => {
+            popup.classList.remove("open-popup");
+            cScore = 0;
+            pScore = 0;
         });
     </script>
 </body>
