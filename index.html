@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="overlay"></div>
     <div class="popup">
-        <h2 id="win-lose"></h2>
-        <button type="button">Ok</button>
+        <div class="popup-content">
+            <h2 id="win-lose"></h2>
+            <button type="button">Ok</button>
+        </div>
     </div>
     <!-- Paper icon https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand-512.png -->
     <!-- Rock icon https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand_punch_fist_-512.png -->
@@ -37,9 +40,8 @@
         </button>
     </div>
     <div class="score-wrapper">
-        <h1 id="player-score" class="score">The player score is: 0</h1>
-        <h1 id="computer-score" class="score">The computer score is: 0</h1>
-    </div>
+        <h1 id="player-score" class="score">Player: 0</h1>
+        <h1 id="computer-score" class="score">Computer: 0</h1>
     <script>
         let imgLinks = new Map();
         imgLinks.set(1, "https://cdn1.iconfinder.com/data/icons/finger-line-vol1/64/icn_finger_hand-512.png");
@@ -75,13 +77,13 @@
                     //winner.textContent = "The winner is: computer";
                     cScore++;
                     let score = document.querySelector("#computer-score"); 
-                    score.textContent = `The computer score is: ${cScore}`;
+                    score.textContent = `Computer: ${cScore}`;
                 } else if (result == 1) {
                     //let winner = document.querySelector("#winner");
                     //winner.textContent = "The winner is: player";
                     pScore++;
                     let score = document.querySelector("#player-score"); 
-                    score.textContent = `The player score is: ${pScore}`;
+                    score.textContent = `Player: ${pScore}`;
                 } else {
                     //let winner = document.querySelector("#winner");
                     //winner.textContent = "Tie round";
@@ -91,11 +93,15 @@
                     popup.classList.add("open-popup");
                     announce = document.querySelector("#win-lose");
                     announce.textContent = "YOU WIN!"
+                    const overlay = document.querySelector(".overlay");
+                    overlay.style.display = "block";
                 } else if (cScore == 5) {
                     popup = document.querySelector(".popup");
                     popup.classList.add("open-popup");
                     announce = document.querySelector("#win-lose");
                     announce.textContent = "YOU LOSE!";
+                    const overlay = document.querySelector(".overlay");
+                    overlay.style.display = "block";
                 }
             });
             
@@ -103,9 +109,15 @@
         const close = document.querySelector(".popup button");
         console.log(close);
         close.addEventListener(("click"), (e) => {
+            const overlay = document.querySelector(".overlay");
+            let temp = document.querySelector("#computer-score"); 
+            temp.textContent = `Computer: 0`;
+            let temp1 = document.querySelector("#player-score"); 
+            temp1.textContent = `Player: 0`;
             popup.classList.remove("open-popup");
             cScore = 0;
             pScore = 0;
+            overlay.style.display = "none";
         });
     </script>
 </body>
